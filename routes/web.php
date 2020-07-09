@@ -24,4 +24,8 @@ Route::get('/pertanyaan', 'PertanyaanController@index');
 Route::get('/tambahpertanyaan', 'PertanyaanController@create');
 Route::post('/pertanyaan', 'PertanyaanController@store');
 
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 52252f99cfb3a517e994066461bd47fb7c8ccb18
