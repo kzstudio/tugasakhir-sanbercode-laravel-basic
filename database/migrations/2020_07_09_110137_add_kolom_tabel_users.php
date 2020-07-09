@@ -14,7 +14,7 @@ class AddKolomTabelUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('total_reputasi');
+            $table->bigInteger('total_reputasi')->default(0);
         });
     }
 

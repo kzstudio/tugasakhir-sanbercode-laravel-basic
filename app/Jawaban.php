@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jawaban extends Model
 {
-    //
+    public function store($request){
+        
+    }
 }
