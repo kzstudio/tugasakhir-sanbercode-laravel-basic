@@ -17,7 +17,7 @@ class AddKolomTabelPertanyaans extends Migration
              $table->text('tags')->nullable();
              $table->integer('jumlah_upvote')->default(0);
              $table->integer('jumlah_downvote')->default(0);
-             $table->integer('total_poinvote')->defualt(0);
+             $table->integer('total_poinvote')->default(0);
         });
     }
 
