@@ -54,7 +54,8 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pertanyaan = Pertanyaan::find($id);
+        return view('pertanyaan.cobacoba',compact('pertanyaan'));
     }
 
     /**
@@ -89,5 +90,17 @@ class PertanyaanController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function upvote($id, Request $request){
+        Pertanyaan::store_upvote($id, $request);
+        
+        return redirect('/pertanyaan/'.$id);
+    }
+    
+    public function downvote($id, Request $request){
+        Pertanyaan::store_downvote($id, $request);
+        
+        return redirect('/pertanyaan/'.$id);
     }
 }
