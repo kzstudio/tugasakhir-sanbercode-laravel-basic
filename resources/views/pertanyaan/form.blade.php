@@ -1,12 +1,9 @@
-<<<<<<< HEAD
+
 @extends('template.master')
 
 @section('title', 'Pertanyaan')
 
-=======
-@extends('layouts.layouting')
-@section('title', 'Tambah Data')
->>>>>>> 52252f99cfb3a517e994066461bd47fb7c8ccb18
+
 @section('content')
 <div class="container">
 	<form action="/pertanyaan" method="POST">
