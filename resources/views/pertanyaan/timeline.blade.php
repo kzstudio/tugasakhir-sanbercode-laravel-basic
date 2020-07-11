@@ -6,7 +6,7 @@
 <div class="col-md-12">
 </div>
 <div class="col-md-12">
-    @include('pertanyaan.link')
+    @include('pertanyaan.tambahlink')
     <div class="card " style="margin-bottom:0px;height:90px;">
     @foreach($pertanyaan as $det)
         <!-- /.card-header -->
@@ -86,7 +86,7 @@
             
             <div class="col-sm-4 " style="text-align:right;">
             <ul class="pagination" style="float:right;">
-            <li class="page-item"><span class="page-link">Data yang ditmapilkan :</span></li>
+            <li class="page-item"><span class="page-link">Pertanyaan yang ditmapilkan :</span></li>
                 <li class="page-item {{($perpage==5)?'active':''}}" ><a href="{{Url('/pertanyaan?'.(isset($_GET['page'])?'page='.$_GET['page'].'&perpage=5':'perpage=5'))}}" class="page-link">5</a></li>
                 <li class="page-item {{($perpage==10)?'active':''}}"><a href="{{Url('/pertanyaan?'.(isset($_GET['page'])?'page='.$_GET['page'].'&perpage=10':'perpage=10'))}}" class="page-link">10</a></li>
                 <li class="page-item {{($perpage==20)?'active':''}}"><a href="{{Url('/pertanyaan?'.(isset($_GET['page'])?'page='.$_GET['page'].'&perpage=20':'perpage=20'))}}" class="page-link">20</a></li>

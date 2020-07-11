@@ -27,6 +27,10 @@
     .font-success{
       color: #28a745;
     }
+
+    .hover{
+      cursor:pointer;
+    }
   </style>
 </head>
 <body class="sidebar-mini layout-navbar-fixed layout-fixed">

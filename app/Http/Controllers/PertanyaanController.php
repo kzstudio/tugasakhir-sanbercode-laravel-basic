@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PertanyaanModel;
 use App\Pertanyaan;
+use App\Jawaban;
 use App\User;
 
 class PertanyaanController extends Controller
@@ -48,7 +49,8 @@ class PertanyaanController extends Controller
         $new_pertanyaan = Pertanyaan::create([
             'judul' => $request['judul'],
             'isi' => $request['isi'],
-            'user_id' => $request['user_id']
+            'user_id' => $request['user_id'],
+            'tags'=>$request['tags']
         ]);
         return redirect('/pertanyaan');
     }
@@ -61,8 +63,10 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
+        $perpage = isset($_GET['perpage'])?$_GET['perpage']:5;
         $pertanyaan = Pertanyaan::find($id);
-        return view('pertanyaan.info',compact('pertanyaan'));
+        $jawaban = Jawaban::where(['pertanyaan_id'=>$id])->paginate($perpage);
+        return view('pertanyaan.info',compact('pertanyaan','jawaban','perpage'));
     }
 
     /**

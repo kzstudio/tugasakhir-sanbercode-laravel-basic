@@ -1,0 +1,50 @@
+<div class="callout callout-danger" style="margin-bottom:1px;padding:5px;">
+    <div class="row">
+        <div class="col-sm-1" style="width:120px;">
+            <div class="card card-primary card-outline" style="margin-bottom:5px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-body" style="padding:0.26rem;text-align:center;">
+                            <p class="card-text up-vote-pertanyaan hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-up"></i></b></p>
+                            <p class="card-text" style="margin-bottom:0px;font-size:30px;">
+                            {{$pertanyaan->jumlah_upvote}}
+                            </p>
+                            <p class="card-text down-vote-pertanyaan  hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-down"></i></b></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-11">
+            <p>{{$pertanyaan->isi}}</p>
+
+            <div class="row">
+                <div class="col-sm-9">
+                    <!-- tag -->
+                        <?php 
+                            foreach($pertanyaan->split_tags as $tag){
+                        ?>
+                        <button type="button" class="btn btn-primary btn-sm p-sm-0">{{$tag}}</button>
+                        <?php        
+                            }
+                        ?>
+                </div>
+                <div class="col-sm-3">
+                ditanyakan {{$pertanyaan->lamanya_dibuat}}
+                <div class="row">
+                    <div class="col-sm-2 user-panel mt-2 d-flex m-b-sm-0 mr-2" >
+                        <div class="image">
+                        <img src="{{ asset('template/dist/img/user2-160x160.jpg') }}" class="" alt="{{$pertanyaan->user->name}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <span class="pt-2">{{$pertanyaan->user->name}}<span><br/>
+                        {{$pertanyaan->user->total_reputasi}}
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -54,7 +54,7 @@ class Pertanyaan extends Model
     }
 
     public function getJumlahJawabanAttribute(){
-        $jawab = Jawaban::where('pertanyaan_id', '=', $this['id'])->get();
+        $jawab = Jawaban::where('pertanyaan_id', '=', $this['id']);
         return $jawab->count();
     }
 
