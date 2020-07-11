@@ -31,6 +31,7 @@ Route::put('/pertanyaan-up-vote/{id}','PertanyaanController@upvote');
 Route::put('/pertanyaan-down-vote/{id}','PertanyaanController@downvote');
 
 //jawaban
+Route::post('/jawaban/{pertanyaan_id}', 'JawabanController@store');
 Route::put('/jawaban-up-vote/{id}','JawabanController@upvote');
 Route::put('/jawaban-down-vote/{id}','JawabanController@downvote');
 Route::put('/jawaban-resolved/{id}','JawabanController@resolved');

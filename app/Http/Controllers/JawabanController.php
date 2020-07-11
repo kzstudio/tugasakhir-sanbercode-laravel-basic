@@ -7,6 +7,16 @@ use App\Jawaban;
 
 class JawabanController extends Controller
 {
+    public function store($pertanyaan_id, Request $request){
+        $new_pertanyaan = Jawaban::create([
+            'isi' => $request['isi'],
+            'user_id'=>$request->user()['id'],
+            'pertanyaan_id'=>$pertanyaan_id
+        ]);
+
+        return redirect('/pertanyaan/'.$pertanyaan_id.'/'.$new_pertanyaan->pertanyaan->slug);
+    }
+
     public function upvote($id, Request $request){
         Jawaban::store_upvote($id, $request);
         

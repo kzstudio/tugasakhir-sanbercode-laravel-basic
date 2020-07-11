@@ -7,6 +7,8 @@ use App\Kepuasan;
 
 class Jawaban extends Model
 {
+    protected $fillable = ['isi','pertanyaan_id','user_id','created_at'];
+
     public static function cek_has_voted($id, $request){
         $cek = Kepuasan::where(['pertanyaan_id'=>$id,'user_id'=>$request->user()['id']])->count();
 
@@ -112,5 +114,9 @@ class Jawaban extends Model
    
     public function user(){
         return $this->belongsTo('App\User');
+    }
+
+    public function pertanyaan(){
+        return $this->belongsTo('App\Pertanyaan');
     }
 }

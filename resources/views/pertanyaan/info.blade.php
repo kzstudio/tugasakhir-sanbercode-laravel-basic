@@ -31,6 +31,11 @@
             </div>
         </div>
     </div>
+
+    @include('pertanyaan.show_formjawaban')
+    <div class="col-md-12">
+&nbsp;
+</div>
     </div>
 </div>
 @endsection

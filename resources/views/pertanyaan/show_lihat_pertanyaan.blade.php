@@ -5,11 +5,20 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card-body" style="padding:0.26rem;text-align:center;">
-                            <p class="card-text up-vote-pertanyaan hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-up"></i></b></p>
+                            
+                            <p class="card-text up-vote-pertanyaan hover" style="margin-bottom:0 !important;font-size:30px;">
+                                <?php if ( $pertanyaan->user_id != Auth::user()['id'] ){ ?>
+                                    <b><i class='fa fa-chevron-up'></i></b>
+                                <?php } ?>
+                            </p>
                             <p class="card-text pertanyaan-vote" style="margin-bottom:0px;font-size:30px;">
                             {{$pertanyaan->total_vote}}
                             </p>
-                            <p class="card-text down-vote-pertanyaan  hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-down"></i></b></p>
+                            <p class="card-text down-vote-pertanyaan  hover" style="margin-bottom:0 !important;font-size:30px;">
+                                <?php if ($pertanyaan->user_id != Auth::user()['id']){ ?>
+                                    <b><i class="fa fa-chevron-down"></i></b>
+                                <?php } ?>
+                            </p>
 
                         </div>
                     </div>
@@ -17,7 +26,7 @@
             </div>
         </div>
         <div class="col-sm-11">
-            <p>{{$pertanyaan->isi}}</p>
+            <p>{!! $pertanyaan->isi !!}</p>
 
             <div class="row">
                 <div class="col-sm-9">
@@ -46,5 +55,6 @@
                 </div>
             </div>
         </div>
+        @include('pertanyaan.show_komentar_pertanyaan')
     </div>
 </div> 

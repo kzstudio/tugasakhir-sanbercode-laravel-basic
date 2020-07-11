@@ -7,6 +7,7 @@ use App\Models\PertanyaanModel;
 use App\Pertanyaan;
 use App\Jawaban;
 use App\User;
+use App\Komentar;
 
 class PertanyaanController extends Controller
 {
@@ -66,7 +67,8 @@ class PertanyaanController extends Controller
         $perpage = isset($_GET['perpage'])?$_GET['perpage']:5;
         $pertanyaan = Pertanyaan::find($id);
         $jawaban = Jawaban::where(['pertanyaan_id'=>$id])->paginate($perpage);
-        return view('pertanyaan.info',compact('pertanyaan','jawaban','perpage'));
+        $komentar_pertanyaan = Komentar::where(['pertanyaan_id'=>$id])->get();
+        return view('pertanyaan.info',compact('pertanyaan','jawaban','perpage','komentar_pertanyaan'));
     }
 
     /**

@@ -33,7 +33,7 @@
     }
   </style>
 </head>
-<body class="sidebar-mini layout-navbar-fixed layout-fixed">
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed layout-footer-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -47,9 +47,10 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     @yield('content')
+    
   </div>
+  
   <!-- /.content-wrapper -->
-
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
@@ -62,6 +63,8 @@
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
+
+  
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
