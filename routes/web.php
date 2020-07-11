@@ -24,12 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/pertanyaan/{id}', 'PertanyaanController@show');
 Route::get('/tambahpertanyaan', 'PertanyaanController@create');
 Route::post('/pertanyaan', 'PertanyaanController@store');
-<<<<<<< HEAD
 Route::get('/pertanyaan/{id}/edit', 'PertanyaanController@edit');
 Route::put('/pertanyaan/{id}', 'PertanyaanController@update');
 Route::delete('pertanyaan/{id}', 'PertanyaanController@destroy');
-=======
->>>>>>> f85eb5f5c8b583a7f9a0ed634a20c1077977667e
 Route::put('/pertanyaan-up-vote/{id}','PertanyaanController@upvote');
 Route::put('/pertanyaan-down-vote/{id}','PertanyaanController@downvote');
 
