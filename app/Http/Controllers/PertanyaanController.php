@@ -15,6 +15,17 @@ class PertanyaanController extends Controller
     public function init(){
         $this->middleware->except('index');
     }
+
+    public function store_komentar($id, Request $request){
+        $new_pertanyaan = Komentar::create([
+            'isi' => !empty($request['isi'])?$request['isi']:'-',
+            'pemberi_komentar_id'=>$request->user()['id'],
+            'pertanyaan_id'=>$id
+        ]);
+
+        return redirect('/pertanyaan/'.$id.'/'.$new_pertanyaan->pertanyaan->slug);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -24,10 +24,18 @@
                     </div>
                 </div>
             </div>
+            
         </div>
         <div class="col-sm-11">
-            <p>{!! $pertanyaan->isi !!}</p>
+            <div class="row">
+                <div class="col-sm-11">
+                <p>{!! $pertanyaan->isi !!}</p>
+                </div>
 
+                <div class="col-sm-1" >
+                <a style="float:right;"  href="/pertanyaan/{{$pertanyaan->id}}/edit/{{$pertanyaan->slug}}" class="btn btn-default"><i class="fa fa-pen"></i></a>
+                                    </div>
+            </div>        
             <div class="row">
                 <div class="col-sm-9">
                     <!-- tag -->
@@ -55,6 +63,7 @@
                 </div>
             </div>
         </div>
+        
         @include('pertanyaan.show_komentar_pertanyaan')
     </div>
 </div> 

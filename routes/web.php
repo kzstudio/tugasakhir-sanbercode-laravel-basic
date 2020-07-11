@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/pertanyaan/{id}/{slug}', 'PertanyaanController@show');
 Route::get('/tambahpertanyaan', 'PertanyaanController@create');
 Route::post('/pertanyaan', 'PertanyaanController@store');
-Route::get('/pertanyaan/{id}/edit', 'PertanyaanController@edit');
+Route::get('/pertanyaan/{id}/edit/{slug}', 'PertanyaanController@edit');
 Route::put('/pertanyaan/{id}', 'PertanyaanController@update');
 Route::delete('pertanyaan/{id}', 'PertanyaanController@destroy');
 Route::put('/pertanyaan-up-vote/{id}','PertanyaanController@upvote');
@@ -35,6 +35,10 @@ Route::post('/jawaban/{pertanyaan_id}', 'JawabanController@store');
 Route::put('/jawaban-up-vote/{id}','JawabanController@upvote');
 Route::put('/jawaban-down-vote/{id}','JawabanController@downvote');
 Route::put('/jawaban-resolved/{id}','JawabanController@resolved');
+
+//komentar
+Route::post('/pertanyaan-komentar/{pertanyaan_id}', 'PertanyaanController@store_komentar');
+Route::post('/jawaban-komentar/{pertanyaan_id}', 'JawabanController@store_komentar');
 });
 
 Route::get('/pertanyaan', 'PertanyaanController@index');

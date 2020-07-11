@@ -90,5 +90,56 @@
             }
         });
     });
+
+    $(".up-vote-jawaban").on('click', function(){
+        var obj = this;
+        var id = $(this).attr('id-data');
+        $.ajax({
+            type:'POST',
+            url:'/jawaban-up-vote/'+id,
+            data:{
+                _token:'<?php echo csrf_token() ?>',
+                _method:'PUT',
+            },
+            success:function(data) {
+                if (data.status == '000'){
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                }
+              
+                $(obj).parents('.card-body').find('.jawaban-vote').html(data.vote);
+            }
+        });
+    });
+
+    $(".down-vote-jawaban").on('click', function(){
+        var obj = this;
+        var id = $(this).attr('id-data');
+        $.ajax({
+            type:'POST',
+            url:'/jawaban-down-vote/'+id,
+            data:{
+                _token:'<?php echo csrf_token() ?>',
+                _method:'PUT',
+            },
+            success:function(data) {
+                if (data.status == '000'){
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                   
+                }
+
+                $(obj).parents('.card-body').find('.jawaban-vote').html(data.vote);
+            }
+        });
+    });
 </script>
 @endpush

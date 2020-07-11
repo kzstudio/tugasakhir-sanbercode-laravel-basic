@@ -1,3 +1,4 @@
+
 @foreach($jawaban as $det)
 <div class="callout callout-dange r" style="margin-bottom:20px;padding:5px;">
     <div class="row">
@@ -8,19 +9,37 @@
                         <div class="col-md-12">
                             <div class="card-body" style="padding:0.26rem;text-align:center;">
                                 <?php if ( $det->user_id != Auth::user()['id'] ){ ?>
-                                <p class="card-text up-vote-pertanyaan hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-up"></i></b></p>
+                                <p class="card-text up-vote-jawaban hover" id-data="{{$det->id}}" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-up"></i></b></p>
                                 <?php } ?>
-                                <p class="card-text pertanyaan-vote" style="margin-bottom:0px;font-size:30px;">
+                                <p class="card-text jawaban-vote" style="margin-bottom:0px;font-size:30px;">
                                 {{$det->total_vote}}
                                 </p>
                                 <?php if ( $det->user_id != Auth::user()['id'] ){ ?>
-                                <p class="card-text down-vote-pertanyaan  hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-down"></i></b></p>
+                                <p class="card-text down-vote-jawaban  hover" id-data="{{$det->id}}" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-down"></i></b></p>
                                 <?php } ?>
+
+                               
                             </div>
+                            
                         </div>
                     </div>
-                </div>
             </div>
+
+            <div class="card card-primary card-outline" style="margin-bottom:5px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-body" style="padding:0.26rem;text-align:center;">
+                               
+                                <?php if ( $det->user_id != Auth::user()['id'] ){ ?>
+                             
+                                <?php } ?>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+            </div>
+        </div>
         <div class="col-sm-11">
             <p>{!! $det->isi !!}</p>
 
@@ -44,7 +63,8 @@
                 </div>
             </div>
         </div>
-        @include('pertanyaan.show_komentar_jawaban')
+        
+      @include('pertanyaan.show_komentar_jawaban')  
     </div>
 </div> 
 @endforeach

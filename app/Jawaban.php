@@ -10,7 +10,7 @@ class Jawaban extends Model
     protected $fillable = ['isi','pertanyaan_id','user_id','created_at'];
 
     public static function cek_has_voted($id, $request){
-        $cek = Kepuasan::where(['pertanyaan_id'=>$id,'user_id'=>$request->user()['id']])->count();
+        $cek = Kepuasan::where(['jawaban_id'=>$id,'user_id'=>$request->user()['id']])->count();
 
         return !empty($cek)?'000':'200';
     }
@@ -45,7 +45,7 @@ class Jawaban extends Model
             $msg = 'Vote berhasil';
             $status = '200';
         }else{
-            $msg = 'Anda sudah melakukan vote, pada pertanyaan ini';
+            $msg = 'Anda sudah melakukan vote, pada jawaban ini';
             $status = '000';
         }
         
@@ -76,7 +76,7 @@ class Jawaban extends Model
             $msg = 'Vote berhasil';
             $status = '200';
         }else{
-            $msg = 'Anda sudah melakukan vote, pada pertanyaan ini';
+            $msg = 'Anda sudah melakukan vote, pada jawaban ini';
             $status = '000';
         }
         
