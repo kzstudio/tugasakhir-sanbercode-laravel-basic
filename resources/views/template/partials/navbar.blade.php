@@ -5,18 +5,19 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+<!--      <li class="nav-item d-none d-sm-inline-block">
         <a href="" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="" class="nav-link">Contact</a>
-      </li>
+      </li>-->
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+   <form class="form-inline ml-7 float-right" action="/pertanyan//cari">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <span class="mr-4">Pertanyaan</span>
+        <input class="form-control form-control-navbar col-sm-8" type="search" placeholder="Cari Pertanyaan" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
@@ -29,7 +30,7 @@
     <ul class="navbar-nav ml-auto">
       
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+<!--      <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
@@ -42,13 +43,15 @@
             <span class="float-right text-muted text-sm">3 mins</span>
           </a>
         </div>
-      </li>
+      </li>-->
 
       <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }} <span class="caret"></span>
-        </a>
+        
 
+          <?php if (!empty(Auth::user()->name)){ ?>
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ !empty(Auth::user()->name)?Auth::user()->name:'Guest' }} <span class="caret"></span>
+        </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('logout') }}"
                onclick="event.preventDefault();
@@ -60,6 +63,7 @@
                 @csrf
             </form>
         </div>
+          <?php } ?>
     </li>
     </ul>
   </nav>

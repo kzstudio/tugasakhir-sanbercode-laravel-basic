@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use App\Jawaban;
 
 class Pertanyaan extends Model
 {
@@ -42,4 +44,30 @@ class Pertanyaan extends Model
         
         return $update;
     }
+
+    public function getSlugAttribute($value)
+    {
+       
+        //do whatever you want to do
+        return Str::slug($this['judul'],'-');
+    }
+
+    public function getJumlahJawabanAttribute(){
+        $jawab = Jawaban::where('pertanyaan_id', '=', $this['id'])->get();
+        return $jawab->count();
+    }
+
+    public function getSplitTagsAttribute(){
+        $tags = !empty(trim($this['tags']))?explode(',',$this['tags']):[];
+        return $tags;
+    }
+
+    public function getLamanyaDibuatAttribute(){
+        return $this['created_at']->diffForHumans();
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
 }

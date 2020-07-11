@@ -19,8 +19,17 @@
   <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .border-success{
+
+    }
+
+    .font-success{
+
+    }
+  </style>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="sidebar-mini layout-navbar-fixed layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -28,6 +37,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
+  
     @include('template.partials.sidebar')
 
   <!-- Content Wrapper. Contains page content -->

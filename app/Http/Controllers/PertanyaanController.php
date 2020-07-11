@@ -8,6 +8,10 @@ use App\User;
 
 class PertanyaanController extends Controller
 {
+    
+    public function init(){
+        $this->middleware->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +19,9 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $pertanyaan = Pertanyaan::all();
-        return view('pertanyaan.index', compact('pertanyaan'));
+        $pertanyaan = Pertanyaan::paginate(1);
+       // $get = Pertanyaan::status();
+        return view('pertanyaan.timeline', compact('pertanyaan'));
     }
 
     /**
