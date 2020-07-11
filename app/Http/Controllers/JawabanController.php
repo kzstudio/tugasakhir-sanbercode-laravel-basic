@@ -40,4 +40,34 @@ class JawabanController extends Controller
 
         return response()->json( $model, 200);
     }
+
+    public function resolved($id, Request $request){
+        $model = Jawaban::store_resolved($id, $request);
+
+        return redirect('/pertanyaan/'.$model->pertanyaan_id.'/'.$model->pertanyaan->slug);
+    }
+
+    public function generate_form_jawaban($id, Request $request)
+    {
+        $jawaban = Jawaban::find($id);
+        $model['form'] = view('jawaban.loadform_jawaban',compact('jawaban'))->render();
+        return response()->json( $model, 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update($id, Request $request)
+    {
+        $jawaban = Jawaban::find($id);
+        $jawaban->updated_at = date('Y-m-d H:i:s');
+        $jawaban->isi = $request['isi'];
+        $jawaban->save();
+
+        return redirect('/pertanyaan/'.$jawaban->pertanyaan_id.'/'.$jawaban->pertanyaan->slug);
+    }
 }

@@ -42,6 +42,27 @@
 
 @push('scripts')
 <script>
+     
+    $(".load-form-jawaban").on('click', function(){
+        var obj = this;
+        var id = $(this).attr('id-data');
+        $.ajax({
+            type:'POST',
+            url:'/jawaban-load-form/'+id,
+            data:{
+                _token:'<?php echo csrf_token() ?>',
+                _method:'PUT',
+            },
+            success:function(data) {
+              console.log(data.form);
+                $(obj).parents('.row').find('.detail-isi-jawaban').html(data.form);
+                setTimeout(() => {
+                    CKEDITOR.replace( 'load-form-jawaban' );
+                }, 300);
+            }
+        });
+    });
+
     $(".up-vote-pertanyaan").on('click', function(){
         var obj = this;
         $.ajax({

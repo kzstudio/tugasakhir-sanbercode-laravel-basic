@@ -35,6 +35,9 @@ Route::post('/jawaban/{pertanyaan_id}', 'JawabanController@store');
 Route::put('/jawaban-up-vote/{id}','JawabanController@upvote');
 Route::put('/jawaban-down-vote/{id}','JawabanController@downvote');
 Route::put('/jawaban-resolved/{id}','JawabanController@resolved');
+Route::get('/jawaban/{id}/edit', 'JawabanController@edit');
+Route::put('/jawaban/{id}', 'JawabanController@update');
+Route::put('/jawaban-load-form/{id}', 'JawabanController@generate_form_jawaban');
 
 //komentar
 Route::post('/pertanyaan-komentar/{pertanyaan_id}', 'PertanyaanController@store_komentar');

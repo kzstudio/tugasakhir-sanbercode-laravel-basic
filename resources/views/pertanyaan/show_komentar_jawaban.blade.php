@@ -14,8 +14,8 @@
         <hr style="margin:5px;padding:0px;">
         </div>
     @endforeach
-    <a data-toggle="collapse" href="#collapseExample_jawab" class="ml-4" style="font-weight:bold;">tambah komentar</a>
-    <div class="collapse" id="collapseExample_jawab">
+    <a data-toggle="collapse" href="#collapseExample_jawab_{{$det->id}}" class="ml-4" style="font-weight:bold;">tambah komentar</a>
+    <div class="collapse" id="collapseExample_jawab_{{$det->id}}">
         <form action="{{Url('/jawaban-komentar/'.$det->id)}}" method="POST">
         @csrf
         <div class="form-group">

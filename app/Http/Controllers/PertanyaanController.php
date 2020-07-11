@@ -23,7 +23,7 @@ class PertanyaanController extends Controller
             'pertanyaan_id'=>$id
         ]);
 
-        return redirect('/pertanyaan/'.$id.'/'.$new_pertanyaan->pertanyaan->slug);
+        return redirect('/pertanyaan/'.$pertanyaan_id.'/'.$new_pertanyaan->pertanyaan->slug);
     }
 
     /**
@@ -132,4 +132,6 @@ class PertanyaanController extends Controller
 
         return response()->json( $model, 200);
     }
+
+    
 }

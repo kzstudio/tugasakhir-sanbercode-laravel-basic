@@ -33,8 +33,10 @@
                 </div>
 
                 <div class="col-sm-1" >
+                <?php if ($pertanyaan->user_id == Auth::user()['id']){ ?>
                 <a style="float:right;"  href="/pertanyaan/{{$pertanyaan->id}}/edit/{{$pertanyaan->slug}}" class="btn btn-default"><i class="fa fa-pen"></i></a>
-                                    </div>
+                <?php } ?>
+                </div>
             </div>        
             <div class="row">
                 <div class="col-sm-9">
