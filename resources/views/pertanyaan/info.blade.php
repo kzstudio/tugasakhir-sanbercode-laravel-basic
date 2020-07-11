@@ -6,9 +6,10 @@
 <div class="col-md-12">
 </div>
 <div class="col-md-12">
-    @include('pertanyaan.judul')
-    @include('pertanyaan.lihat_pertanyaan')
-    @include('pertanyaan.jumlah_jawaban')
+    @include('pertanyaan.show_judul')
+    @include('pertanyaan.show_lihat_pertanyaan')
+    @include('pertanyaan.show_jumlah_jawaban')
+    @include('pertanyaan.show_list_jawaban')
     <div class="card " style="margin-bottom:0px;height:90px;">
     
     <div class="card mt-3 pb-0" style="height:38px;">
@@ -37,7 +38,52 @@
 @push('scripts')
 <script>
     $(".up-vote-pertanyaan").on('click', function(){
-        alert('asdasd');
+        var obj = this;
+        $.ajax({
+            type:'POST',
+            url:'/pertanyaan-up-vote/{{$pertanyaan->id}}',
+            data:{
+                _token:'<?php echo csrf_token() ?>',
+                _method:'PUT',
+            },
+            success:function(data) {
+                if (data.status == '000'){
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                }
+              
+                $(obj).parents('.card-body').find('.pertanyaan-vote').html(data.vote);
+            }
+        });
+    });
+
+    $(".down-vote-pertanyaan").on('click', function(){
+        var obj = this;
+        $.ajax({
+            type:'POST',
+            url:'/pertanyaan-down-vote/{{$pertanyaan->id}}',
+            data:{
+                _token:'<?php echo csrf_token() ?>',
+                _method:'PUT',
+            },
+            success:function(data) {
+                if (data.status == '000'){
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                   
+                }
+
+                $(obj).parents('.card-body').find('.pertanyaan-vote').html(data.vote);
+            }
+        });
     });
 </script>
 @endpush

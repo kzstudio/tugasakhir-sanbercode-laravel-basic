@@ -7,6 +7,12 @@ use App\Kepuasan;
 
 class Jawaban extends Model
 {
+    public static function cek_has_voted($id, $request){
+        $cek = Kepuasan::where(['pertanyaan_id'=>$id,'user_id'=>$request->user()['id']])->count();
+
+        return !empty($cek)?'000':'200';
+    }
+
     public static function store($pertanyaan_id, $request){
         $var = $request->all();
         $var['user_id'] = $request->user()['id'];
@@ -22,15 +28,29 @@ class Jawaban extends Model
      * @return type
      */
     public static function store_upvote($id,$request){
+
+        $cek = self::cek_has_voted($id, $request);
         $update = self::find($id);
-        $update->jumlah_upvote += 1;//menhitung jumlah dipilih upvote
-        $update->total_poinvote += 10;//menambahkan 10 poin
-        $update->updated_at = date('Y-m-d H:i:s');
-        $update->save();
+
+        if ($cek == '200'){
+            $update = self::find($id);
+            $update->jumlah_upvote += 1;//menhitung jumlah dipilih upvote
+            $update->total_poinvote += 10;//menambahkan 10 poin
+            $update->updated_at = date('Y-m-d H:i:s');
+            $update->save();
+            
+            $kepuasan = Kepuasan::store_kepuasan($update, 'upvote','jawaban',$request);
+            $msg = 'Vote berhasil';
+            $status = '200';
+        }else{
+            $msg = 'Anda sudah melakukan vote, pada pertanyaan ini';
+            $status = '000';
+        }
         
-        $kepuasan = Kepuasan::store_kepuasan($update, 'upvote','jawaban',$request);
-        
-        return $update;
+        $data['vote'] = $update->jumlah_upvote - $update->jumlah_downvote;
+        $data['msg'] = $msg;
+        $data['status'] = $status;
+        return $data;
     }
     
     /**
@@ -39,16 +59,29 @@ class Jawaban extends Model
      * @return type
      */
     public static function store_downvote($id,$request){
-        $ok = true;
+        $cek = self::cek_has_voted($id, $request);
         $update = self::find($id);
-        $update->jumlah_downvote += 1;//menhitung jumlah dipilih downvote
-        $update->total_poinvote -= 1;//menambahkan -1 poin
-        $update->updated_at = date('Y-m-d H:i:s');
-        $update->save();
+
+        if ($cek == '200'){
+            $ok = true;
+            $update = self::find($id);
+            $update->jumlah_downvote += 1;//menhitung jumlah dipilih downvote
+            $update->total_poinvote -= 1;//menambahkan -1 poin
+            $update->updated_at = date('Y-m-d H:i:s');
+            $update->save();
+            
+            $kepuasan = Kepuasan::store_kepuasan($update, 'downvote','jawaban',$request);
+            $msg = 'Vote berhasil';
+            $status = '200';
+        }else{
+            $msg = 'Anda sudah melakukan vote, pada pertanyaan ini';
+            $status = '000';
+        }
         
-        $kepuasan = Kepuasan::store_kepuasan($update, 'downvote','jawaban',$request);
-        
-        return $update;
+        $data['vote'] = $update->jumlah_upvote - $update->jumlah_downvote;
+        $data['msg'] = $msg;
+        $data['status'] = $status;
+        return $data;
     }
     
     /**
@@ -66,5 +99,18 @@ class Jawaban extends Model
         $kepuasan = Kepuasan::store_kepuasan($update, 'resolved','jawaban',$request);
         
         return $update;
+    }
+
+    public function getTotalVoteAttribute(){
+        return $this['jumlah_upvote'] - $this['jumlah_downvote'];
+    }
+
+    public function getLamanyaDibuatAttribute(){
+        return $this['created_at']->diffForHumans();
+    }
+
+   
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }

@@ -6,8 +6,8 @@
                     <div class="col-md-12">
                         <div class="card-body" style="padding:0.26rem;text-align:center;">
                             <p class="card-text up-vote-pertanyaan hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-up"></i></b></p>
-                            <p class="card-text" style="margin-bottom:0px;font-size:30px;">
-                            {{$pertanyaan->jumlah_upvote}}
+                            <p class="card-text pertanyaan-vote" style="margin-bottom:0px;font-size:30px;">
+                            {{$pertanyaan->total_vote}}
                             </p>
                             <p class="card-text down-vote-pertanyaan  hover" style="margin-bottom:0 !important;font-size:30px;"><b><i class="fa fa-chevron-down"></i></b></p>
 

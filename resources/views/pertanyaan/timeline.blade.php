@@ -18,7 +18,7 @@
                             <div class="col-md-12">
                                 <div class="card-body" style="padding:0.26rem;text-align:center;">
                                     <p class="card-text" style="margin-bottom:0px;font-size:20px;">
-                                    {{$det->jumlah_upvote}}
+                                    {{$det->total_vote}}
                                     </p>
                                     <p class="card-text" style="margin-bottom:0 !important;"><b>Upvote</b></p>
 
