@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PertanyaanModel;
 use App\Pertanyaan;
 use App\User;
 
@@ -41,7 +42,7 @@ class PertanyaanController extends Controller
         $new_pertanyaan = Pertanyaan::create([
             'judul' => $request['judul'],
             'isi' => $request['isi'],
-            'user_id' => $request['user_id'],
+            'user_id' => $request['user_id']
         ]);
         return redirect('/pertanyaan');
     }
@@ -54,7 +55,8 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pertanyaan = Pertanyaan::find($id);
+        return view('pertanyaan.info',compact('pertanyaan'));
     }
 
     /**
@@ -65,7 +67,9 @@ class PertanyaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pertanyaan = Pertanyaan::find($id);
+        $users = User::all();
+        return view('pertanyaan.edit',compact('pertanyaan', 'users'));
     }
 
     /**
@@ -75,9 +79,10 @@ class PertanyaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $pertanyaan = PertanyaanModel::update($id, $request->all());
+        return redirect('/pertanyaan');
     }
 
     /**
@@ -88,6 +93,19 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted = PertanyaanModel::destroy($id);
+        return redirect('/pertanyaan');
+    }
+
+    public function upvote($id, Request $request){
+        Pertanyaan::store_upvote($id, $request);
+
+        return redirect('/pertanyaan/'.$id);
+    }
+
+    public function downvote($id, Request $request){
+        Pertanyaan::store_downvote($id, $request);
+
+        return redirect('/pertanyaan/'.$id);
     }
 }

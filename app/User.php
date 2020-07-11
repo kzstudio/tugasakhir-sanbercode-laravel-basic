@@ -36,4 +36,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public static function store_reputasi($model,$jenis){
+        $user_id = null;
+        if ($jenis == 'pertanyaan' || $jenis == 'jawaban'){
+            $user_id = $model->user_id;
+
+        }
+
+        if (!empty($user_id)){
+            $user = self::find($user_id);
+            $user->total_reputasi += $model->poin_reputasi;
+            $user->updated_at = date('Y-m-d H:i:s');
+            $user->save();
+        }
+
+        return $user;
+    }
+
+    public function pertanyaan(){
+        return $this->belongsTo('App\Pertanyaan');
+    }
 }
