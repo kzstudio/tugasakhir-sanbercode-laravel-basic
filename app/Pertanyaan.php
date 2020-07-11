@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Jawaban;
+use Illuminate\Support\Facades\DB;
 
 class Pertanyaan extends Model
 {
     protected $guarded = ["jumlah_like"];
-    
+
     /**
      * untuk jawaban yang di klik upvote
      * @param type $id
@@ -69,5 +70,4 @@ class Pertanyaan extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
-
 }
