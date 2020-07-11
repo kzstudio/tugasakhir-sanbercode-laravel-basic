@@ -21,11 +21,11 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
     .border-success{
-
+        border:1px solid #28a745;
     }
 
     .font-success{
-
+      color: #28a745;
     }
   </style>
 </head>

@@ -67,6 +67,15 @@ class Pertanyaan extends Model
         return $this['created_at']->diffForHumans();
     }
 
+    public function getStatusResolvedAttribute(){
+        $where = [
+            'pertanyaan_id'=>$this['id'],
+            'resolved'=>1,
+        ];
+        $resolved = Jawaban::where($where)->count();
+        return ($resolved>0)?true:false;
+    }
+
     public function user(){
         return $this->belongsTo('App\User');
     }

@@ -26,10 +26,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card card-success card-outline">
+                    <div class="card card-{{($det->status_resolved==true)?'success':'danger'}} card-outline">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card-body" style="padding:0.26rem;text-align:center;">
+                                <div class="card-body {{($det->status_resolved==true)?'border-success font-success':''}}" style="padding:0.26rem;text-align:center;">
                                     <p class="card-text" style="margin-bottom:0px;font-size:20px;">
                                     {{$det->jumlah_jawaban}} 
                                     </p>
