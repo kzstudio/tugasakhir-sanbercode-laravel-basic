@@ -20,9 +20,10 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $pertanyaan = Pertanyaan::paginate(1);
+        $perpage = isset($_GET['perpage'])?$_GET['perpage']:5;
+        $pertanyaan = Pertanyaan::paginate($perpage);
        // $get = Pertanyaan::status();
-        return view('pertanyaan.timeline', compact('pertanyaan'));
+        return view('pertanyaan.timeline', compact('pertanyaan','perpage'));
     }
 
     /**
@@ -61,11 +62,7 @@ class PertanyaanController extends Controller
     public function show($id)
     {
         $pertanyaan = Pertanyaan::find($id);
-<<<<<<< HEAD
         return view('pertanyaan.info',compact('pertanyaan'));
-=======
-        return view('pertanyaan.cobacoba',compact('pertanyaan'));
->>>>>>> f85eb5f5c8b583a7f9a0ed634a20c1077977667e
     }
 
     /**
@@ -115,18 +112,6 @@ class PertanyaanController extends Controller
     public function downvote($id, Request $request){
         Pertanyaan::store_downvote($id, $request);
 
-        return redirect('/pertanyaan/'.$id);
-    }
-    
-    public function upvote($id, Request $request){
-        Pertanyaan::store_upvote($id, $request);
-        
-        return redirect('/pertanyaan/'.$id);
-    }
-    
-    public function downvote($id, Request $request){
-        Pertanyaan::store_downvote($id, $request);
-        
         return redirect('/pertanyaan/'.$id);
     }
 }

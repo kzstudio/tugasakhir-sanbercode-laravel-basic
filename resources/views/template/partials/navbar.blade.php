@@ -14,7 +14,7 @@
     </ul>
 
     <!-- SEARCH FORM -->
-   <form class="form-inline ml-7 float-right" action="/pertanyan//cari">
+   <form class="form-inline ml-7 float-right" action="/pertanyan/cari">
       <div class="input-group input-group-sm">
         <span class="mr-4">Pertanyaan</span>
         <input class="form-control form-control-navbar col-sm-8" type="search" placeholder="Cari Pertanyaan" aria-label="Search">
