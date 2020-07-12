@@ -38,6 +38,7 @@ Route::put('/jawaban-resolved/{id}','JawabanController@resolved');
 Route::get('/jawaban/{id}/edit', 'JawabanController@edit');
 Route::put('/jawaban/{id}', 'JawabanController@update');
 Route::put('/jawaban-load-form/{id}', 'JawabanController@generate_form_jawaban');
+Route::delete('/jawaban/{id}', 'JawabanController@destroy');
 
 //komentar
 Route::post('/pertanyaan-komentar/{pertanyaan_id}', 'PertanyaanController@store_komentar');

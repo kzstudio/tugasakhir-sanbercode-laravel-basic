@@ -8,9 +8,9 @@
     <?php
         $komentar_jawaban = Komentar::where(['jawaban_id'=>$det->id])->get();
     ?>
-    @foreach($komentar_jawaban as $det)
+    @foreach($komentar_jawaban as $ko)
         <div class="col-sm-11">
-        <p class="ml-4" style="margin:0px;padding:0px;">{{$det->isi}} - <a href="#" style="color:blue;">{{$det->user->name}}</a> {{date('d M Y', strtotime($det->created_at)).' pukul '.date('H:i', strtotime($det->created_at))}}</p>
+        <p class="ml-4" style="margin:0px;padding:0px;">{{$ko->isi}} - <a href="#" style="color:blue;">{{$ko->user->name}}</a> {{date('d M Y', strtotime($ko->created_at)).' pukul '.date('H:i', strtotime($ko->created_at))}}</p>
         <hr style="margin:5px;padding:0px;">
         </div>
     @endforeach

@@ -8,6 +8,7 @@ use App\Pertanyaan;
 use App\Jawaban;
 use App\User;
 use App\Komentar;
+use App\Kepuasan;
 
 class PertanyaanController extends Controller
 {
@@ -61,7 +62,7 @@ class PertanyaanController extends Controller
         $new_pertanyaan = Pertanyaan::create([
             'judul' => $request['judul'],
             'isi' => $request['isi'],
-            'user_id' => $request['user_id'],
+            'user_id' => $request->user()['id'],
             'tags'=>$request['tags']
         ]);
         return redirect('/pertanyaan');
@@ -116,8 +117,27 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = PertanyaanModel::destroy($id);
-        return redirect('/pertanyaan');
+        
+
+        $cek = Kepuasan::where(['pertanyaan_id'=>$id])->count();
+
+        if ($cek > 0){
+            $model['msg'] = 'Pertanyaan tidak bisa dihapus, karena sudah di vote';
+            $model['status'] = 0;
+        }else{
+            $cekJawaban = Jawaban::where(['pertanyaan_id'=>$id])->count();
+
+            if ($cekJawaban > 0){
+                $model['msg'] = 'Pertanyaan tidak bisa dihapus, karena sudah di jawab';
+                $model['status'] = 0;
+            }else{
+                $deleted = PertanyaanModel::destroy($id);
+                $model['msg'] = 'Pertanyaan berhasil dihapus';
+                $model['status'] = 1;
+            }
+        }
+
+        return response()->json( $model, 200);
     }
 
     public function upvote($id, Request $request)

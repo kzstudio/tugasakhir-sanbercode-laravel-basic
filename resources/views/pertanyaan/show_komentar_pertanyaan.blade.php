@@ -4,10 +4,10 @@
 </div>
 <div class="col-sm-11">
     <hr style="margin:5px;padding:0px;">               
-    @foreach($komentar_pertanyaan as $det)
+    @foreach($komentar_pertanyaan as $ko)
     <div class="row">
         <div class="col-sm-11">
-        <p class="ml-4" style="margin:0px;padding:0px;">{{$det->isi}} - <a href="#" style="color:blue;">{{$det->user->name}}</a> {{date('d M Y', strtotime($det->created_at)).' pukul '.date('H:i', strtotime($det->created_at))}}</p>
+        <p class="ml-4" style="margin:0px;padding:0px;">{{$ko->isi}} - <a href="#" style="color:blue;">{{$ko->user->name}}</a> {{date('d M Y', strtotime($ko->created_at)).' pukul '.date('H:i', strtotime($ko->created_at))}}</p>
         <hr style="margin:5px;padding:0px;">
         </div>
        

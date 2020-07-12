@@ -14,7 +14,8 @@ class PertanyaanModel {
                     ->where('id', $id)
                     ->update([
                         'judul' => $request["judul"],
-                        'isi' => $request["isi"]
+                        'isi' => $request["isi"],
+                        'tags'=>$request['tags']
                     ]);
             return $pertanyaan;
         }

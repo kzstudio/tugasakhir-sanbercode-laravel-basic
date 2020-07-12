@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Jawaban;
 use App\Komentar;
+use App\Kepuasan;
 
 class JawabanController extends Controller
 {
@@ -14,8 +15,7 @@ class JawabanController extends Controller
             'pemberi_komentar_id'=>$request->user()['id'],
             'jawaban_id'=>$id
         ]);
-
-        return redirect('/pertanyaan/'.$new_pertanyaan->pertanyaan_id.'/'.$new_pertanyaan->jawaban->slug);
+        return redirect('/pertanyaan/'.$new_pertanyaan->jawaban->pertanyaan_id.'/'.$new_pertanyaan->jawaban->pertanyaan->slug);
     }
 
     public function store($pertanyaan_id, Request $request){
@@ -69,5 +69,20 @@ class JawabanController extends Controller
         $jawaban->save();
 
         return redirect('/pertanyaan/'.$jawaban->pertanyaan_id.'/'.$jawaban->pertanyaan->slug);
+    }
+
+    public function destroy($id, Request $request){
+        $cek = Kepuasan::where(['jawaban_id'=>$id])->count();
+
+        if ($cek > 0){
+            $model['msg'] = 'Jawaban tidak bisa dihapus, karena sudah di vote';
+            $model['status'] = 0;
+        }else{
+            $jawab = Jawaban::find($id)->delete();
+            $model['msg'] = 'Jawaban berhasil dihapus';
+            $model['status'] = 1;
+        }
+
+        return response()->json( $model, 200);
     }
 }

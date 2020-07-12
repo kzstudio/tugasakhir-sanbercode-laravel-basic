@@ -46,20 +46,24 @@
         </div>
         <div class="col-sm-11">
             <div class="row">
-                <div class="col-sm-11">
+                <div class="col-sm-10">
                 <span class='detail-isi-jawaban'>{!! $det->isi !!}</span>
                 </div>
 
-                <div class="col-sm-1" >
-                <?php if ($det->user_id == Auth::user()['id']){ ?>
-                <a id-data="{{$det->id}}" style="float:right;"  href="javascript:;" class="btn btn-default load-form-jawaban"><i class="fa fa-pen"></i></a>
-                <?php } ?>
+                <div class="col-sm-2" >
+                
                 <?php if (!$det->pertanyaan->status_resolved){ ?>
-                <form action="/jawaban-resolved/{{$det->id}}" method="POST">
+                <form action="/jawaban-resolved/{{$det->id}}" method="POST" style="display:inline;">
                     @csrf
                     @method('PUT')
                     <button style="float:right;" class="btn btn-success"><i class="fa fa-check"></i></button>
                 </form>
+                <?php } ?>
+                <?php if ($det->user_id == Auth::user()['id']){ ?>
+                <a id-data="{{$det->id}}" style="float:right;color:#fff"  href="javascript:;" class="btn btn-danger hapus-form-jawaban"><i class="fa fa-trash"></i></a>
+                <?php } ?>
+                <?php if ($det->user_id == Auth::user()['id']){ ?>
+                <a id-data="{{$det->id}}" style="float:right;"  href="javascript:;" class="btn btn-default load-form-jawaban"><i class="fa fa-pen"></i></a>
                 <?php } ?>
                 </div>
             </div>    

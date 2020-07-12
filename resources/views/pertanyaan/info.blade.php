@@ -42,7 +42,75 @@
 
 @push('scripts')
 <script>
+     $(".hapus-form-pertanyaan").on('click', function(){
+        var obj = this;
+        $.ajax({
+            type:'POST',
+            url:'/pertanyaan/{{$pertanyaan->id}}',
+            data:{
+                _token:'<?php echo csrf_token() ?>',
+                _method:'DELETE'
+            },
+            success:function(data) {
+                if (data.status == '1'){
+                    
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    });
+                    
+                    location.href = "{{Url('/pertanyaan')}}";
+                }else{
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                }
+                 
+            }
+        });
+    });
+
+     $(".hapus-form-jawaban").on('click', function(){
+        var obj = this;
+        var id = $(this).attr('id-data');
+        $.ajax({
+            type:'POST',
+            url:'/jawaban/'+id,
+            data:{
+                _token:'<?php echo csrf_token() ?>',
+                _method:'DELETE'
+            },
+            success:function(data) {
+                if (data.status == '1'){
+                    
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    });
+                    
+                    location.reload();
+                }else{
+                    Swal.fire({
+                        title: 'Perhatian!',
+                        text: data.msg,
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                }
+                 
+            }
+        });
+    });
+
      
+
     $(".load-form-jawaban").on('click', function(){
         var obj = this;
         var id = $(this).attr('id-data');
@@ -54,7 +122,7 @@
                 _method:'PUT',
             },
             success:function(data) {
-              console.log(data.form);
+              
                 $(obj).parents('.row').find('.detail-isi-jawaban').html(data.form);
                 setTimeout(() => {
                     CKEDITOR.replace( 'load-form-jawaban' );

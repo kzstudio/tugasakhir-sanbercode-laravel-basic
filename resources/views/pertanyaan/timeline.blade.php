@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-sm-11">
                     <h5><a href="{{Url('/pertanyaan/'.$det->id.'/'.$det->slug)}}"><b>{{$det->judul}}</b></a></h5>
-                    <p>{{$det->isi}}</p>
+                    <p>{!! $det->isi !!}</p>
                     
                     <div class="row">
                         <div class="col-sm-9">
