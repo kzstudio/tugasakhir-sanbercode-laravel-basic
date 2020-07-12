@@ -41,7 +41,22 @@
               </p>
             </a>
           </li>
-
+          <li class="nav-item has-treeview">
+            <a href="{{ url('/erd') }}" class="nav-link">
+                <i class="nav-icon fas fa-folder"></i>
+                <p>
+                  ERD
+                </p>
+              </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="{{ url('/tentang-kami') }}" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Tentang Kami
+                </p>
+              </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

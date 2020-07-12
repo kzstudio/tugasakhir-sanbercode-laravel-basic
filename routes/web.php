@@ -15,10 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
+
+Route::get('/erd', function () {
+    return view('erd');
+});
+Route::get('/tentang-kami', function () {
+    return view('aboutus');
+});
 
 //pertanyaan
 Route::get('/pertanyaan/{id}/{slug}', 'PertanyaanController@show');
