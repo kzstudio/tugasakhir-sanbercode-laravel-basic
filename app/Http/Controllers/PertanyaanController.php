@@ -42,7 +42,7 @@ class PertanyaanController extends Controller
 
     public function cari()
     {
-        $q = isset($_GET['q'])?$_GET['q']:'';
+        $q = isset($_GET['q'])?strtolower($_GET['q']):'';
         $perpage = 5;
         $pertanyaan = Pertanyaan::where('judul','like', '%'.$q.'%')
                         ->orWhere('isi','like', '%'.$q.'%')
