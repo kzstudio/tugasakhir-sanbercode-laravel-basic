@@ -26,6 +26,7 @@ Route::get('/tambahpertanyaan', 'PertanyaanController@create');
 Route::post('/pertanyaan', 'PertanyaanController@store');
 Route::get('/pertanyaan/{id}/edit/{slug}', 'PertanyaanController@edit');
 Route::put('/pertanyaan/{id}', 'PertanyaanController@update');
+Route::get('/pertanyaan/cari', 'PertanyaanController@cari');
 Route::delete('pertanyaan/{id}', 'PertanyaanController@destroy');
 Route::put('/pertanyaan-up-vote/{id}','PertanyaanController@upvote');
 Route::put('/pertanyaan-down-vote/{id}','PertanyaanController@downvote');

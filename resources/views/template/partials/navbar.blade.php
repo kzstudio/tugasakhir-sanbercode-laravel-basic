@@ -14,10 +14,10 @@
     </ul>
 
     <!-- SEARCH FORM -->
-   <form class="form-inline ml-7 float-right" action="/pertanyan/cari">
+   <form class="form-inline ml-7 float-right" action="/pertanyaan/cari" action="GET">
       <div class="input-group input-group-sm">
         <span class="mr-4">Pertanyaan</span>
-        <input class="form-control form-control-navbar col-sm-8" type="search" placeholder="Cari Pertanyaan" aria-label="Search">
+        <input name='q' class="form-control form-control-navbar col-sm-8" type="search" placeholder="Cari Pertanyaan" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>

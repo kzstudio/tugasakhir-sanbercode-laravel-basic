@@ -40,6 +40,17 @@ class PertanyaanController extends Controller
         return view('pertanyaan.timeline', compact('pertanyaan','perpage'));
     }
 
+    public function cari()
+    {
+        $q = isset($_GET['q'])?$_GET['q']:'';
+        $perpage = 5;
+        $pertanyaan = Pertanyaan::where('judul','like', '%'.$q.'%')
+                        ->orWhere('isi','like', '%'.$q.'%')
+                        ->paginate($perpage);
+       // $get = Pertanyaan::status();
+        return view('pertanyaan.timeline', compact('pertanyaan','perpage'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
